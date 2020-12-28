@@ -24,7 +24,7 @@ namespace MoodAnalyzerUnitTest
         public void GivenNullMood_ShouldReturn_Happy()
         {
             string expected = "Happy";
-            MoodAnalyzer moodAnalyzer = new MoodAnalyzer( null );
+            MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null);
             Assert.AreEqual(expected, moodAnalyzer.AnalyzeMood());
         }
 

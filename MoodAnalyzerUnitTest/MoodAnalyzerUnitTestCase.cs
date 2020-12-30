@@ -20,13 +20,13 @@ namespace MoodAnalyzerUnitTest
             MoodAnalyzer moodAnalyzer = new MoodAnalyzer("I am Happy");
             Assert.AreEqual(expected, moodAnalyzer.AnalyzeMood());
         }
-        [TestMethod]
-        public void GivenNullMood_ShouldReturn_Happy()
-        {
-            string expected = "Happy";
-            MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null);
-            Assert.AreEqual(expected, moodAnalyzer.AnalyzeMood());
-        }
+        //[TestMethod]
+        //public void GivenNullMood_ShouldReturn_Happy()
+        //{
+        //  string expected = "Happy";
+        //    MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null);
+        //    Assert.AreEqual(expected, moodAnalyzer.AnalyzeMood());
+        //}
         [TestMethod]
         [DataRow("")]
         public void GivenEmptyMood_ShouldThrow_MoodAnalysisEmptyTypeException(string message)
@@ -63,6 +63,14 @@ namespace MoodAnalyzerUnitTest
             object obj = new MoodAnalyzer(null);
             object actual = MoodAnalyzerReflection.CreateMoodAnalysis("MoodAnalyzerApp.MoodAnalyzer", "MoodAnalyzer");
             //obj.Equals(actual);
+            Assert.AreEqual(obj.GetType().Equals(actual.GetType()), true);
+        }
+        [TestMethod]
+        public void GivenMooadAnalyzerClassName_WhenAnalyze_ShouldReturnObjectWithParameter()
+        {
+            object obj = new MoodAnalyzer(null);
+            object actual = MoodAnalyzerReflection.CreateMooadAnalyzeUsingParameterizedConstructor("MoodAnalyzerApp.MoodAnalyzer", "MoodAnalyzer");
+
             Assert.AreEqual(obj.GetType().Equals(actual.GetType()), true);
         }
 

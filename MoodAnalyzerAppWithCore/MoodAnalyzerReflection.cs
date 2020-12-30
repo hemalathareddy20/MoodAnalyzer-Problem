@@ -53,7 +53,52 @@ namespace MoodAnalyzerApp
             }
 
         }
+        public static string CreateMoodAnalysisInParameterMethod(string methodName, string fieldName)
+        {
+            Type moodAnalysertype = Type.GetType("MoodAnalyzerApp.MoodAnalyzer");
+            MethodInfo methodInfo = moodAnalysertype.GetMethod(methodName);
+            string[] stringArray = { "I am in Happy mood" };
+            object objectInstance = Activator.CreateInstance(moodAnalysertype, stringArray);
+            try
+            {
+                if (fieldName != null)
+                {
+                    FieldInfo fieldInfo = moodAnalysertype.GetField(fieldName);
+                    if (fieldInfo == null)
+                        return "" + MoodAnalyzerCustomException.ExceptionsType.NULL_MESSAGE;
+                    fieldInfo.SetValue(objectInstance, fieldName);
+                }
+            }
+            catch (MoodAnalyzerCustomException)
+            {
+                return "No_Such_Field_Exception";
+            }
+            try
+            {
+                if (fieldName == null)
+                {
+                    return "" + MoodAnalyzerCustomException.ExceptionsType.NULL_MESSAGE;
+                }
+            }
+            catch (MoodAnalyzerCustomException)
+            {
+                return "NULL_EXCEPTION";
+            }
+            try
+            {
+                if (methodInfo == null)
+                {
+                    return "" + MoodAnalyzerCustomException.ExceptionsType.NO_SUCH_METHOD;
+                }
+
+                string method = (string)methodInfo.Invoke(objectInstance, null);
+                return method;
+            }
+            catch (MoodAnalyzerCustomException)
+            {
+                return "HAPPY";
+            }
+        }
 
     }
-
 }

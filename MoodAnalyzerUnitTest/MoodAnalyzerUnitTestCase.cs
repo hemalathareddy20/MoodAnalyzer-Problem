@@ -3,9 +3,9 @@ using MoodAnalyzerApp;
 
 namespace MoodAnalyzerUnitTest
 {
-    [TestClass]   
+    [TestClass]
     public class MoodAnalyzerUnitTestCase
-    { 
+    {
         [TestMethod]
         public void GivenMood_ShouldReturn_Sad()
         {
@@ -23,9 +23,9 @@ namespace MoodAnalyzerUnitTest
         //[TestMethod]
         //public void GivenNullMood_ShouldReturn_Happy()
         //{
-        //  string expected = "Happy";
-        //    MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null);
-        //    Assert.AreEqual(expected, moodAnalyzer.AnalyzeMood());
+        //string expected = "Happy";
+        // MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null)
+        //Assert.AreEqual(expected, moodAnalyzer.AnalyzeMood());
         //}
         [TestMethod]
         [DataRow("")]
@@ -44,7 +44,7 @@ namespace MoodAnalyzerUnitTest
         }
         [TestMethod]
         [DataRow(null)]
-        public void GivenNullMood_ShouldThrow_MoodAnalysisEmptyTypeException(string message)  
+        public void GivenNullMood_ShouldThrow_MoodAnalysisEmptyTypeException(string message)
         {
             try
             {
@@ -62,7 +62,6 @@ namespace MoodAnalyzerUnitTest
         {
             object obj = new MoodAnalyzer(null);
             object actual = MoodAnalyzerReflection.CreateMoodAnalysis("MoodAnalyzerApp.MoodAnalyzer", "MoodAnalyzer");
-            //obj.Equals(actual);
             Assert.AreEqual(obj.GetType().Equals(actual.GetType()), true);
         }
         [TestMethod]
@@ -73,6 +72,25 @@ namespace MoodAnalyzerUnitTest
 
             Assert.AreEqual(obj.GetType().Equals(actual.GetType()), true);
         }
+        [TestMethod]
+        public void GivenMoodAnalyserClassName_WhenAnalyse_ShouldReturnObjectWithMethodInfo()
+        {
+            string actual = MoodAnalyzerReflection.CreateMoodAnalysisInParameterMethod("AnalyseMood", "In-Prooper field Name");
+            string expected = "NULL_MESSAGE";
+            Assert.AreEqual(actual, expected);
+        }
+        public void GivenMooadAnalyzerClassName_WhenAnalyze_ShouldReturnObjectWithPassingNull()
+        {
+            string actual = MoodAnalyzerReflection.CreateMoodAnalysisInParameterMethod("AnalyseMood", null);
+            string expected = "NULL_MESSAGE";
+            Assert.AreEqual(actual, expected);
 
+        }
+        public void GivenMoodAnalyserClassName_WhenAnalyse_ShouldReturnObjectWithFieldInfo()
+        {
+            string actual = MoodAnalyzerReflection.CreateMoodAnalysisInParameterMethod("AnalyseMood", "message");
+            string expected = "Happy";
+            Assert.AreEqual(actual, expected);
+        }
     }
 }

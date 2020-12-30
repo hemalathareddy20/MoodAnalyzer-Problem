@@ -57,5 +57,14 @@ namespace MoodAnalyzerUnitTest
                 Assert.AreEqual("Message should not be Null", e.Message);
             }
         }
+        [TestMethod]
+        public void GivenMooadAnalyzerClassName_WhenAnalyze_ShouldReturnObject()
+        {
+            object obj = new MoodAnalyzer(null);
+            object actual = MoodAnalyzerReflection.CreateMoodAnalysis("MoodAnalyzerApp.MoodAnalyzer", "MoodAnalyzer");
+            //obj.Equals(actual);
+            Assert.AreEqual(obj.GetType().Equals(actual.GetType()), true);
+        }
+
     }
 }

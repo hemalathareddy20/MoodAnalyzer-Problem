@@ -11,6 +11,10 @@ namespace MoodAnalyzerApp
         {
             this.message = message;
         }
+        public MoodAnalyzer()
+        {
+
+        }
         public string AnalyzeMood()
         {
             try
@@ -32,6 +36,7 @@ namespace MoodAnalyzerApp
             {
                 throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionsType.NULL_MESSAGE, "Message should not be Null");
             }
+            
         }
     }
 }
